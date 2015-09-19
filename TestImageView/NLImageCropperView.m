@@ -29,11 +29,14 @@
 
 #define MIN_IMG_SIZE 30
 
-@implementation NLImageCropperView
+@implementation NLImageCropperView{
+        CGFloat _ratio;
+}
 
 - (void)setCropRegionRect:(CGRect)cropRect
 {
     _cropRect = cropRect;
+    _ratio = cropRect.size.width/cropRect.size.height;
     _translatedCropRect =CGRectMake(cropRect.origin.x/_scalingFactor, cropRect.origin.y/_scalingFactor, cropRect.size.width/_scalingFactor, cropRect.size.height/_scalingFactor);
     [_cropView setCropRegionRect:_translatedCropRect];
 }
@@ -161,7 +164,9 @@
     [super touchesMoved:touches withEvent:event];
 
     CGPoint locationPoint = [[touches anyObject] locationInView:_imageView];
-
+    
+    CGFloat currentWidth;
+    
     NSLog(@"Location Point: (%f,%f)", locationPoint.x, locationPoint.y);
     if(locationPoint.x < 0 || locationPoint.y < 0 || locationPoint.x > _imageView.bounds.size.width || locationPoint.y > _imageView.bounds.size.height)
     {
@@ -174,33 +179,36 @@
             if(((locationPoint.x + MIN_IMG_SIZE) >= (_translatedCropRect.origin.x + _translatedCropRect.size.width)) ||
                ((locationPoint.y + MIN_IMG_SIZE)>= (_translatedCropRect.origin.y + _translatedCropRect.size.height)))
                 return;
+            currentWidth = _translatedCropRect.size.width + (_translatedCropRect.origin.x - locationPoint.x);
             _translatedCropRect = CGRectMake(locationPoint.x, locationPoint.y,
-                                   _translatedCropRect.size.width + (_translatedCropRect.origin.x - locationPoint.x),
-                                   _translatedCropRect.size.height + (_translatedCropRect.origin.y - locationPoint.y));
+                                   currentWidth,
+                                   currentWidth/_ratio);
             break;
         case LeftBottom:
             if(((locationPoint.x + MIN_IMG_SIZE) >= (_cropRect.origin.x + _translatedCropRect.size.width)) ||
                ((locationPoint.y - _translatedCropRect.origin.y) <= MIN_IMG_SIZE))
                 return;
+            
+            currentWidth =  _translatedCropRect.size.width + (_translatedCropRect.origin.x - locationPoint.x);
             _translatedCropRect = CGRectMake(locationPoint.x, _translatedCropRect.origin.y,
-                                   _translatedCropRect.size.width + (_translatedCropRect.origin.x - locationPoint.x),
-                                   locationPoint.y - _translatedCropRect.origin.y);
+                                  currentWidth,
+                                   currentWidth/_ratio);
             break;
         case RightTop:
-            if(((locationPoint.x - _translatedCropRect.origin.x) <= MIN_IMG_SIZE) ||
-               ((locationPoint.y + MIN_IMG_SIZE)>= (_translatedCropRect.origin.y + _translatedCropRect.size.height)))
+            if( locationPoint.x - _translatedCropRect.origin.x <= MIN_IMG_SIZE)
                 return;
+            currentWidth = locationPoint.x - _translatedCropRect.origin.x;
             _translatedCropRect = CGRectMake(_translatedCropRect.origin.x, locationPoint.y,
-                                   locationPoint.x - _cropRect.origin.x,
-                                   _translatedCropRect.size.height + (_translatedCropRect.origin.y - locationPoint.y));
+                                   currentWidth,
+                                   currentWidth/_ratio);
             break;
         case RightBottom:
-            if(((locationPoint.x - _translatedCropRect.origin.x) <= MIN_IMG_SIZE) ||
-               ((locationPoint.y - _translatedCropRect.origin.y) <= MIN_IMG_SIZE))
+            if( locationPoint.x - _translatedCropRect.origin.x <= MIN_IMG_SIZE)
                 return;
+              currentWidth = locationPoint.x - _translatedCropRect.origin.x;
             _translatedCropRect = CGRectMake(_translatedCropRect.origin.x, _translatedCropRect.origin.y,
-                                   locationPoint.x - _translatedCropRect.origin.x,
-                                   locationPoint.y - _translatedCropRect.origin.y);
+                                   currentWidth,
+                                   currentWidth/_ratio);
             break;
         case MoveCenter:
 

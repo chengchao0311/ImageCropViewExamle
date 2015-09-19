@@ -38,6 +38,7 @@ enum rectPoint { LeftTop = 0, RightTop=1, LeftBottom = 2, RightBottom = 3, MoveC
     CGRect _translatedCropRect;
     CGPoint _lastMovePoint;
     CGFloat _scalingFactor;
+
 }
 - (void)setCropRegionRect:(CGRect)cropRect;
 - (void) setImage:(UIImage*)image;

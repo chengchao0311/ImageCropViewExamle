@@ -32,7 +32,7 @@
     imageCropper = [[NLImageCropperView alloc] initWithFrame:self.view.bounds];
     UIImage * image = [UIImage imageNamed:@"peace.jpg"];
     [imageCropper setImage:image];
-    CGRect rect = CGRectMake(0,0,300, 300);
+    CGRect rect = CGRectMake(0,0,150, 150);
     [imageCropper setCropRegionRect:rect];
     [self.view addSubview:imageCropper];
     
@@ -40,6 +40,7 @@
 
 - (void)cropImageAction{
     UIImage * cropedImage = [imageCropper getCroppedImage];
+    imageCropper.hidden = YES;
     [self.imageView setImage:cropedImage];
 }
 
