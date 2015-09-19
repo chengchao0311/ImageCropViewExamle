@@ -11,7 +11,6 @@
 
 @interface ViewController (){
     UIImagePickerController * picker;
-    UIImage * image;
     NLImageCropperView * imageCropper;
 }
 
@@ -21,13 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-    [btn setTitle:@"go" forState:UIControlStateNormal];
-    [btn setBackgroundColor:[UIColor redColor]];
-    [btn addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem * item = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    self.navigationController.navigationBar.topItem.leftBarButtonItems = @[item];
     
     UIButton * btn1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [btn1 setTitle:@"ok" forState:UIControlStateNormal];
@@ -37,43 +29,18 @@
     UIBarButtonItem * item2 = [[UIBarButtonItem alloc] initWithCustomView:btn1];
     self.navigationController.navigationBar.topItem.rightBarButtonItems = @[item2];
     
-    
     imageCropper = [[NLImageCropperView alloc] initWithFrame:self.view.bounds];
-    imageCropper.hidden = YES;
+    UIImage * image = [UIImage imageNamed:@"peace.jpg"];
+    [imageCropper setImage:image];
+    CGRect rect = CGRectMake(0,0,300, 300);
+    [imageCropper setCropRegionRect:rect];
     [self.view addSubview:imageCropper];
     
-    
-}
-
-- (void)buttonAction{
-    picker = [[UIImagePickerController alloc] init];
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    picker.delegate = self;
-    [self presentViewController:picker animated:YES completion:nil];
-}
-
-- (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info{
-    __weak ViewController * weakSelf = self;
-    image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [picker dismissViewControllerAnimated:YES completion:^{
-        [weakSelf imageViewCallBack];
-    }];
-}
-
-- (void)imageViewCallBack{
-    self.imageView.hidden = YES;
-    [imageCropper setImage:image];
-    [imageCropper setCropRegionRect:CGRectMake(10, 50, 450, 680)];
-    imageCropper.hidden = NO;
 }
 
 - (void)cropImageAction{
     UIImage * cropedImage = [imageCropper getCroppedImage];
     [self.imageView setImage:cropedImage];
-    
-    imageCropper.hidden = YES;
-    self.imageView.contentMode = UIViewContentModeScaleToFill;
-    self.imageView.hidden = NO;
 }
 
 
