@@ -14,6 +14,10 @@
 		623FAB101BAD63B7006E6418 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 623FAB0F1BAD63B7006E6418 /* Images.xcassets */; };
 		623FAB131BAD63B7006E6418 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 623FAB111BAD63B7006E6418 /* LaunchScreen.xib */; };
 		623FAB1F1BAD63B7006E6418 /* TestImageViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 623FAB1E1BAD63B7006E6418 /* TestImageViewTests.m */; };
+		623FAB291BAD6918006E6418 /* peace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 623FAB281BAD6918006E6418 /* peace.jpg */; };
+		625453A71BAD8A6D0071A9D6 /* corner.png in Resources */ = {isa = PBXBuildFile; fileRef = 625453A21BAD8A6D0071A9D6 /* corner.png */; };
+		625453A81BAD8A6D0071A9D6 /* NLCropViewLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 625453A41BAD8A6D0071A9D6 /* NLCropViewLayer.m */; };
+		625453A91BAD8A6D0071A9D6 /* NLImageCropperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 625453A61BAD8A6D0071A9D6 /* NLImageCropperView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,12 @@
 		623FAB181BAD63B7006E6418 /* TestImageViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestImageViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		623FAB1D1BAD63B7006E6418 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		623FAB1E1BAD63B7006E6418 /* TestImageViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestImageViewTests.m; sourceTree = "<group>"; };
+		623FAB281BAD6918006E6418 /* peace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = peace.jpg; sourceTree = "<group>"; };
+		625453A21BAD8A6D0071A9D6 /* corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corner.png; sourceTree = "<group>"; };
+		625453A31BAD8A6D0071A9D6 /* NLCropViewLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLCropViewLayer.h; sourceTree = "<group>"; };
+		625453A41BAD8A6D0071A9D6 /* NLCropViewLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLCropViewLayer.m; sourceTree = "<group>"; };
+		625453A51BAD8A6D0071A9D6 /* NLImageCropperView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NLImageCropperView.h; sourceTree = "<group>"; };
+		625453A61BAD8A6D0071A9D6 /* NLImageCropperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NLImageCropperView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +91,12 @@
 		623FAB011BAD63B7006E6418 /* TestImageView */ = {
 			isa = PBXGroup;
 			children = (
+				625453A21BAD8A6D0071A9D6 /* corner.png */,
+				625453A31BAD8A6D0071A9D6 /* NLCropViewLayer.h */,
+				625453A41BAD8A6D0071A9D6 /* NLCropViewLayer.m */,
+				625453A51BAD8A6D0071A9D6 /* NLImageCropperView.h */,
+				625453A61BAD8A6D0071A9D6 /* NLImageCropperView.m */,
+				623FAB281BAD6918006E6418 /* peace.jpg */,
 				623FAB061BAD63B7006E6418 /* AppDelegate.h */,
 				623FAB071BAD63B7006E6418 /* AppDelegate.m */,
 				623FAB091BAD63B7006E6418 /* ViewController.h */,
@@ -200,8 +216,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				623FAB0E1BAD63B7006E6418 /* Main.storyboard in Resources */,
+				623FAB291BAD6918006E6418 /* peace.jpg in Resources */,
 				623FAB131BAD63B7006E6418 /* LaunchScreen.xib in Resources */,
 				623FAB101BAD63B7006E6418 /* Images.xcassets in Resources */,
+				625453A71BAD8A6D0071A9D6 /* corner.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +239,8 @@
 			files = (
 				623FAB0B1BAD63B7006E6418 /* ViewController.m in Sources */,
 				623FAB081BAD63B7006E6418 /* AppDelegate.m in Sources */,
+				625453A91BAD8A6D0071A9D6 /* NLImageCropperView.m in Sources */,
+				625453A81BAD8A6D0071A9D6 /* NLCropViewLayer.m in Sources */,
 				623FAB051BAD63B7006E6418 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -418,6 +438,7 @@
 				623FAB241BAD63B7006E6418 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		623FAB251BAD63B7006E6418 /* Build configuration list for PBXNativeTarget "TestImageViewTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +447,7 @@
 				623FAB271BAD63B7006E6418 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
